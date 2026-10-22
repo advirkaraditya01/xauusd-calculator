@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>XAUUSD Hedging Calculator & Simulator ($25K Prop / $1.5K Real)</title>
+  <title>XAUUSD Hedging Calculator & Simulator ($25K Prop / $1.8K Real)</title>
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -120,28 +120,75 @@
       color: #fff;
     }
 
-    /* Direction Switch Cards */
-    .dir-card {
-      border: 2px solid rgba(255, 255, 255, 0.08);
-      background: rgba(255, 255, 255, 0.02);
-      border-radius: 0.875rem;
-      padding: 16px;
+    /* Authentic Direction Buttons matching tradingwala */
+    .dir-pill {
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 50px;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 12px 20px;
       cursor: pointer;
-      transition: all 0.25s ease;
       text-align: center;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       user-select: none;
     }
 
-    .dir-card.active.buy {
-      border-color: var(--success-green);
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(6, 182, 212, 0.15));
-      box-shadow: 0 4px 20px rgba(16, 185, 129, 0.25);
+    .dir-pill:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.15);
     }
 
-    .dir-card.active.sell {
-      border-color: var(--danger-red);
-      background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(245, 158, 11, 0.15));
-      box-shadow: 0 4px 20px rgba(239, 68, 68, 0.25);
+    .dir-pill .dir-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #94a3b8;
+      text-align: center;
+      margin-bottom: 2px;
+      letter-spacing: 0.2px;
+    }
+
+    .dir-pill .dir-sub {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #64748b;
+      text-align: center;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    /* Active Buy: Cyan/Teal Gradient Pill */
+    .dir-pill.active.buy {
+      background: linear-gradient(90deg, #0099cc 0%, #00b4d8 50%, #10b981 100%);
+      border-color: transparent;
+      box-shadow: 0 4px 20px rgba(6, 182, 212, 0.35);
+    }
+
+    .dir-pill.active.buy .dir-title {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .dir-pill.active.buy .dir-sub {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    /* Active Sell: Vibrant Pink to Orange Gradient Pill matching tradingwala screenshot */
+    .dir-pill.active.sell {
+      background: linear-gradient(90deg, #ff0077 0%, #ff4b2b 50%, #ff8c00 100%);
+      border-color: transparent;
+      box-shadow: 0 4px 20px rgba(255, 0, 119, 0.35);
+    }
+
+    .dir-pill.active.sell .dir-title {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .dir-pill.active.sell .dir-sub {
+      color: rgba(255, 255, 255, 0.9);
     }
 
     /* Target Result Cards */
@@ -206,25 +253,28 @@
 <div class="container-xl">
 
   <!-- Header Bar -->
-  <header class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 pb-3 mb-4 border-bottom border-secondary border-opacity-25">
-    <div class="d-flex align-items-center gap-2">
-      <div class="bg-warning bg-opacity-10 text-warning p-2 rounded-3 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+  <header class="d-flex flex-column flex-lg-row justify-content-between align-items-start align-items-lg-center gap-3 pb-3 mb-4 border-bottom border-secondary border-opacity-25">
+    <div class="d-flex align-items-center gap-3">
+      <div class="bg-warning bg-opacity-10 text-warning p-2 rounded-3 d-flex align-items-center justify-content-center flex-shrink-0" style="width: 44px; height: 44px;">
         <i class="fas fa-coins fs-5"></i>
       </div>
       <div>
-        <h1 class="h5 fw-bold mb-0 d-flex align-items-center gap-2">
-          <span>XAUUSD Hedging Engine</span>
-          <span class="badge bg-warning text-dark px-2 py-1 fs-6" style="font-size: 0.7rem !important; letter-spacing: 0.5px;">GOLD 25K</span>
-        </h1>
-        <small class="text-secondary">Mirrored Gold Hedging Calculation Matrix</small>
+        <div class="d-flex align-items-center gap-2 flex-wrap">
+          <h1 class="h5 fw-bold mb-0 text-white text-nowrap">XAUUSD Hedging Engine</h1>
+          <span class="badge bg-warning text-dark px-2 py-1 fw-bold font-mono" style="font-size: 0.72rem; letter-spacing: 0.5px;">GOLD 25K</span>
+        </div>
+        <small class="text-secondary d-block mt-1">Mirrored Gold Hedging Calculation Matrix</small>
       </div>
     </div>
 
     <!-- Info Stats Badges -->
-    <div class="d-flex flex-wrap gap-2">
-      <span class="pill-stat"><i class="fas fa-shield-alt text-warning"></i> Prop Capital: <strong class="text-white">$25,000</strong></span>
-      <span class="pill-stat"><i class="fas fa-wallet text-info"></i> Real Capital: <strong class="text-white">$1,800</strong></span>
-      <span class="pill-stat"><i class="fas fa-bolt text-warning"></i> Contract: <strong class="text-white">100 oz / lot</strong></span>
+    <div class="d-flex flex-wrap gap-2 align-items-center justify-content-start justify-content-lg-end">
+      <span class="pill-stat text-nowrap"><i class="fas fa-shield-alt text-warning"></i> Prop Capital: <strong class="text-white">$25,000</strong></span>
+      <span class="pill-stat text-nowrap"><i class="fas fa-wallet text-info"></i> Real Capital: <strong class="text-white">$1,800</strong></span>
+      <span class="pill-stat text-nowrap"><i class="fas fa-bolt text-warning"></i> Contract: <strong class="text-white">100 oz / lot</strong></span>
+      <a href="xauusd_10k_test.html" class="btn btn-sm btn-outline-info rounded-pill px-3 py-1 fw-bold text-decoration-none text-nowrap">
+        <i class="fas fa-coins me-1"></i> Switch to 10K Gold
+      </a>
     </div>
   </header>
 
@@ -298,12 +348,12 @@
     <div class="row g-3 mb-4">
       <!-- Prop Lot -->
       <div class="col-6 col-md-3">
-        <label class="form-label text-secondary small fw-bold text-uppercase mb-1">Lot Size (Prop)</label>
+        <label class="form-label text-secondary small fw-bold text-uppercase mb-1">Lot (Prop Desk)</label>
         <input type="text" id="propLotInput" class="form-control form-control-dark font-mono py-2" readonly value="1.00">
       </div>
       <!-- Real Lot -->
       <div class="col-6 col-md-3">
-        <label class="form-label text-secondary small fw-bold text-uppercase mb-1">Lot Size (Real)</label>
+        <label class="form-label text-secondary small fw-bold text-uppercase mb-1">Lot (Real Account)</label>
         <input type="text" id="realLotInput" class="form-control form-control-dark font-mono py-2" readonly value="0.17">
       </div>
       <!-- Prop Open Price -->
@@ -320,22 +370,18 @@
 
     <!-- Direction Selector -->
     <div class="row g-3 mb-4">
-      <!-- Buy Card -->
+      <!-- Buy Pill -->
       <div class="col-12 col-md-6">
-        <div class="dir-card active buy" id="btnBuyDir" onclick="setDirection('BUY')">
-          <div class="fw-bold text-success text-uppercase fs-6 mb-1">
-            <i class="fas fa-arrow-trend-up me-1"></i> BUY DIRECTION
-          </div>
-          <small class="text-secondary fw-semibold">REAL ACCOUNT: BUY &bull; PROP DESK: SELL</small>
+        <div class="dir-pill active buy" id="btnBuyDir" onclick="setDirection('BUY')">
+          <div class="dir-title" id="buyTitle">Selected: Buy</div>
+          <div class="dir-sub">REAL ACCOUNT: BUY | PROP ACCOUNT: SELL</div>
         </div>
       </div>
-      <!-- Sell Card -->
+      <!-- Sell Pill -->
       <div class="col-12 col-md-6">
-        <div class="dir-card sell" id="btnSellDir" onclick="setDirection('SELL')">
-          <div class="fw-bold text-danger text-uppercase fs-6 mb-1">
-            <i class="fas fa-arrow-trend-down me-1"></i> SELL DIRECTION
-          </div>
-          <small class="text-secondary fw-semibold">REAL ACCOUNT: SELL &bull; PROP DESK: BUY</small>
+        <div class="dir-pill sell" id="btnSellDir" onclick="setDirection('SELL')">
+          <div class="dir-title" id="sellTitle">Choose sell direction</div>
+          <div class="dir-sub">REAL ACCOUNT: SELL | PROP ACCOUNT: BUY</div>
         </div>
       </div>
     </div>
@@ -384,7 +430,7 @@
         <div class="p-3 rounded-3 bg-dark border border-secondary border-opacity-25 h-100">
           <div class="d-flex justify-content-between align-items-center pb-2 mb-3 border-bottom border-secondary border-opacity-25">
             <h6 class="fw-bold text-secondary text-uppercase small mb-0">
-              <i class="fas fa-user-shield text-success me-2"></i>Real Account ($1,500)
+              <i class="fas fa-user-shield text-success me-2"></i>Real Account ($1,800)
             </h6>
             <span id="realDirBadge" class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-25 fw-bold">BUY</span>
           </div>
@@ -578,24 +624,24 @@
     'FUNDED_TRADE1': {
       name: 'Funded - 1st Trade',
       group: 'FUNDED',
-      propLot: 0.40,
-      realLot: 0.20,
-      propTpMove: 50.00,
-      propSlMove: 27.50,
-      realTpMove: 27.50,
-      realSlMove: 50.00,
+      propLot: 0.80,
+      realLot: 0.40,
+      propTpMove: 25.00,
+      propSlMove: 13.75,
+      realTpMove: 13.75,
+      realSlMove: 25.00,
       nextIfLoss: 'FUNDED_TRADE2',
       nextIfWin: 'FUNDED_TRADE1'
     },
     'FUNDED_TRADE2': {
       name: 'Funded - 2nd Trade',
       group: 'FUNDED',
-      propLot: 0.40,
-      realLot: 0.20,
-      propTpMove: 77.50,
-      propSlMove: 27.50,
-      realTpMove: 27.50,
-      realSlMove: 77.50,
+      propLot: 0.80,
+      realLot: 0.40,
+      propTpMove: 38.75,
+      propSlMove: 13.75,
+      realTpMove: 13.75,
+      realSlMove: 38.75,
       nextIfLoss: 'FUNDED_TRADE1',
       nextIfWin: 'FUNDED_TRADE1'
     }
@@ -616,16 +662,27 @@
 
   function setDirection(dir) {
     currentDirection = dir;
+    const btnBuy = document.getElementById('btnBuyDir');
+    const btnSell = document.getElementById('btnSellDir');
+    const buyTitle = document.getElementById('buyTitle');
+    const sellTitle = document.getElementById('sellTitle');
+
     if (dir === 'BUY') {
-      document.getElementById('btnBuyDir').classList.add('active');
-      document.getElementById('btnSellDir').classList.remove('active');
+      btnBuy.className = 'dir-pill active buy';
+      btnSell.className = 'dir-pill sell';
+      buyTitle.innerText = 'Selected: Buy';
+      sellTitle.innerText = 'Choose sell direction';
+
       document.getElementById('propDirBadge').innerText = 'SELL';
       document.getElementById('propDirBadge').className = 'badge bg-danger bg-opacity-25 text-danger border border-danger border-opacity-25 fw-bold';
       document.getElementById('realDirBadge').innerText = 'BUY';
       document.getElementById('realDirBadge').className = 'badge bg-success bg-opacity-25 text-success border border-success border-opacity-25 fw-bold';
     } else {
-      document.getElementById('btnSellDir').classList.add('active');
-      document.getElementById('btnBuyDir').classList.remove('active');
+      btnBuy.className = 'dir-pill buy';
+      btnSell.className = 'dir-pill active sell';
+      buyTitle.innerText = 'Choose buy direction';
+      sellTitle.innerText = 'Selected: Sell';
+
       document.getElementById('propDirBadge').innerText = 'BUY';
       document.getElementById('propDirBadge').className = 'badge bg-success bg-opacity-25 text-success border border-success border-opacity-25 fw-bold';
       document.getElementById('realDirBadge').innerText = 'SELL';
