@@ -191,17 +191,46 @@
       color: rgba(255, 255, 255, 0.9);
     }
 
-    /* Target Result Cards */
+    /* Refined Target Result Cards */
     .target-subcard {
-      background: #0f172a;
-      border-radius: 0.75rem;
-      padding: 14px;
-      border-left: 4px solid #4b5563;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 0.875rem;
+      padding: 14px 16px;
       height: 100%;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
     }
 
-    .target-subcard.tp { border-left-color: var(--success-green); }
-    .target-subcard.sl { border-left-color: var(--danger-red); }
+    .target-subcard:hover {
+      background: rgba(15, 23, 42, 0.9);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    /* Subtle elegant accent instead of harsh thick border */
+    .target-subcard.tp {
+      border-color: rgba(16, 185, 129, 0.25);
+      background: linear-gradient(180deg, rgba(16, 185, 129, 0.05) 0%, rgba(15, 23, 42, 0.7) 100%);
+    }
+
+    .target-subcard.tp:hover {
+      border-color: rgba(16, 185, 129, 0.4);
+      box-shadow: 0 4px 20px rgba(16, 185, 129, 0.08);
+    }
+
+    .target-subcard.sl {
+      border-color: rgba(239, 68, 68, 0.25);
+      background: linear-gradient(180deg, rgba(239, 68, 68, 0.05) 0%, rgba(15, 23, 42, 0.7) 100%);
+    }
+
+    .target-subcard.sl:hover {
+      border-color: rgba(239, 68, 68, 0.4);
+      box-shadow: 0 4px 20px rgba(239, 68, 68, 0.08);
+    }
 
     .price-text {
       font-size: 1.35rem;
@@ -624,24 +653,24 @@
     'FUNDED_TRADE1': {
       name: 'Funded - 1st Trade',
       group: 'FUNDED',
-      propLot: 0.80,
-      realLot: 0.40,
-      propTpMove: 25.00,
-      propSlMove: 13.75,
-      realTpMove: 13.75,
-      realSlMove: 25.00,
+      propLot: 0.40,
+      realLot: 0.20,
+      propTpMove: 50.00,
+      propSlMove: 27.50,
+      realTpMove: 27.50,
+      realSlMove: 50.00,
       nextIfLoss: 'FUNDED_TRADE2',
       nextIfWin: 'FUNDED_TRADE1'
     },
     'FUNDED_TRADE2': {
       name: 'Funded - 2nd Trade',
       group: 'FUNDED',
-      propLot: 0.80,
-      realLot: 0.40,
-      propTpMove: 38.75,
-      propSlMove: 13.75,
-      realTpMove: 13.75,
-      realSlMove: 38.75,
+      propLot: 0.40,
+      realLot: 0.20,
+      propTpMove: 77.50,
+      propSlMove: 27.50,
+      realTpMove: 27.50,
+      realSlMove: 77.50,
       nextIfLoss: 'FUNDED_TRADE1',
       nextIfWin: 'FUNDED_TRADE1'
     }
